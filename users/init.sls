@@ -11,30 +11,30 @@
     - shell: {{ user.get('shell', '') }}
     - expire: {{ user.get('expire', '') }}
     - groups:
-{% for group in user.get('groups', []) %}
+      {% for group in user.get('groups', []) %}
       - {{ group }}
-{% endfor %}
-{% if user['admin'] is defined and user['admin'] %}
+      {% endfor %}
+      {% if user['admin'] is defined and user['admin'] %}
       - root
-{%- endif %}
+      {%- endif %}
 
-{% if user['pub_ssh_keys'] is defined %}
+  {% if user['pub_ssh_keys'] is defined %}
   ssh_auth.present:
     - user: {{ username }}
     - names:
-{% for pub_ssh_key in user.get('pub_ssh_keys', []) %}
+      {% for pub_ssh_key in user.get('pub_ssh_keys', []) %}
       - {{ pub_ssh_key }}
-{% endfor %}
+      {% endfor %}
     - require:
       - user: {{ username }}
-{% endif %}
+  {% endif %}
 {% endfor %}
 
 {% for username, user in salt['pillar.get']('users.retired', {}).iteritems() %}
 {{ username }}:
   user.absent:
-{% if user %}
+    {% if user %}
     - purge: {{ user.get('purge', False) }}
     - force: {{ user.get('force', False) }}
-{% endif %}
+    {% endif %}
 {% endfor %}
