@@ -1,48 +1,40 @@
-{% for name, user in salt['pillar.get']('users.active', {}).iteritems() %}
-{{ name }}:
+{% for username, user in salt['pillar.get']('users.active', {}).iteritems() %}
+{{ username }}:
   user:
     - present
     - fullname: {{ user['fullname'] }}
-{% if user['uid'] is defined %}
-    - uid: {{ user['uid'] }}
-{% endif %}
+    - uid: {{ user.get('uid', '') }}
     - gid_from_name: True
-{% if user['password'] is defined %}
-    - password: {{ user['password'] }}
-{% if user['enforce_password'] is defined %}
-    - enforce_password: {{ user['enforce_password'] }}
-{% endif %}
-{% endif %}
-{% if user['home'] is defined %}
-    - home: {{ user['home'] }}
-{% endif %}
-{% if user['shell'] is defined %}
-    - shell: {{ user['shell'] }}
-{% endif %}
-{% if user['expire'] is defined %}
-    - expire: {{ user['expire'] }}
-{% endif %}
-{% if user['groups'] is defined %}
-    - groups: {{ user['groups'] }}
-{% endif %}
+    - password: {{ user.get('password', '') }}
+    - enforce_password: {{ user.get('enforce_password', False) }}
+    - home: {{ user.get('home', '') }}
+    - shell: {{ user.get('shell', '') }}
+    - expire: {{ user.get('expire', '') }}
+    - groups:
+{% for group in user.get('groups', []) %}
+      - {{ group }}
+{% endfor %}
 {% if user['admin'] is defined and user['admin'] %}
-    - optional_groups:
       - root
-{% endif %}
+{%- endif %}
 
-{% if user['key.pub'] is defined and user['key.pub'] %}
-{{ name }}_key.pub:
-  ssh_auth:
-    - present
-    - user: {{ name }}
-    - source: salt://users/{{ name }}/keys/key.pub
+{% if user['pub_ssh_keys'] is defined %}
+  ssh_auth.present:
+    - user: {{ username }}
+    - names:
+{% for pub_ssh_key in user.get('pub_ssh_keys', []) %}
+      - {{ pub_ssh_key }}
+{% endfor %}
+    - require:
+      - user: {{ username }}
 {% endif %}
 {% endfor %}
 
-{% for name, user in salt['pillar.get']('users.retired', {}).iteritems() %}
-{{ name }}:
-  user:
-    - absent
-    - purge: True
-    - force: True
+{% for username, user in salt['pillar.get']('users.retired', {}).iteritems() %}
+{{ username }}:
+  user.absent:
+{% if user %}
+    - purge: {{ user.get('purge', False) }}
+    - force: {{ user.get('force', False) }}
+{% endif %}
 {% endfor %}
