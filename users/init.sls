@@ -1,5 +1,4 @@
-{% if salt['pillar.get']('users.active') %}
-{% for name, user in pillar['users.active'].iteritems() %}
+{% for name, user in salt['pillar.get']('users.active', {}).iteritems() %}
 {{ name }}:
   user:
     - present
@@ -39,14 +38,11 @@
     - source: salt://users/{{ name }}/keys/key.pub
 {% endif %}
 {% endfor %}
-{% endif %}
 
-{% if salt['pillar.get']('users.retired') %}
-{% for name, user in pillar['users.retired'].iteritems() %}
+{% for name, user in salt['pillar.get']('users.retired', {}).iteritems() %}
 {{ name }}:
   user:
     - absent
     - purge: True
     - force: True
 {% endfor %}
-{% endif %}
