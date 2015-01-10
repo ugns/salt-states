@@ -3,34 +3,34 @@
   user:
     - present
     - fullname: {{ user['fullname'] }}
-{% if 'uid' in user %}
+{% if user['uid'] is defined %}
     - uid: {{ user['uid'] }}
 {% endif %}
     - gid_from_name: True
-{% if 'password' in user %}
+{% if user['password'] is defined %}
     - password: {{ user['password'] }}
-{% if 'enforce_password' in user %}
+{% if user['enforce_password'] is defined %}
     - enforce_password: {{ user['enforce_password'] }}
 {% endif %}
 {% endif %}
-{% if 'home' in user %}
+{% if user['home'] is defined %}
     - home: {{ user['home'] }}
 {% endif %}
-{% if 'shell' in user %}
+{% if user['shell'] is defined %}
     - shell: {{ user['shell'] }}
 {% endif %}
-{% if 'expire' in user %}
+{% if user['expire'] is defined %}
     - expire: {{ user['expire'] }}
 {% endif %}
-{% if 'groups' in user %}
+{% if user['groups'] is defined %}
     - groups: {{ user['groups'] }}
 {% endif %}
-{% if 'admin' in user and user['admin'] %}
+{% if user['admin'] is defined and user['admin'] %}
     - optional_groups:
       - root
 {% endif %}
 
-{% if 'key.pub' in user and user['key.pub'] %}
+{% if user['key.pub'] is defined and user['key.pub'] %}
 {{ name }}_key.pub:
   ssh_auth:
     - present
