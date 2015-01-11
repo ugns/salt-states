@@ -1,7 +1,6 @@
 {% for username, user in salt['pillar.get']('users.active', {}).iteritems() %}
 {{ username }}:
-  user:
-    - present
+  user.present:
     - fullname: {{ user['fullname'] }}
     - uid: {{ user.get('uid', '') }}
     - gid_from_name: True
