@@ -5,7 +5,8 @@ base:
     - salt.minion
     - ntp.ng
 
-  'salt01.undergrid.net':
+  'server_role:salt_master':
+    - match: grain
     - salt.master
     - salt.formulas
 
