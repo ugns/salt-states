@@ -3,6 +3,7 @@ base:
     - users
     - github
     - salt.minion
+    - ntp.ng
 
   'salt01.undergrid.net':
     - salt.master
