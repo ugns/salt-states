@@ -4,6 +4,7 @@ base:
     - github
     - salt.minion
     - ntp.ng
+    - postfix.config
 
   'server_type:salt':
     - match: grain
