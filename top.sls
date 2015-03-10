@@ -7,8 +7,11 @@ base:
 
   'server_type:salt':
     - match: grain
-    - salt.master
     - salt.formulas
+
+  'server_role:salt_master':
+    - match: grain
+    - salt.master
 
   'server_role:salt_syndic':
     - match: grain
