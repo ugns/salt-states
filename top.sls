@@ -1,5 +1,7 @@
+# vim: sts=2:ts=2:et:ai
 base:
   '*':
+    - grains
     - users
     - github
     - salt.minion
