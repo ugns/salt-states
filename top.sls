@@ -24,7 +24,6 @@ base:
     - match: grain
     - apache.debian_full
     - apache.modules
-    - apache.rewrite
     - apache.php5
 
   'os:Debian':
