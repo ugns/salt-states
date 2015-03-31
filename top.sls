@@ -20,6 +20,13 @@ base:
     - match: grain
     - salt.syndic
 
+  'server_type:web':
+    - match: grain
+    - apache.debian_full
+    - apache.modules
+    - apache.rewrite
+    - apache.php5
+
   'os:Debian':
     - match: grain
     - repos.apt
