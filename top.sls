@@ -3,10 +3,12 @@ base:
   '*':
     - grains
     - users
+    - sudoers
     - github
     - salt.minion
     - ntp.ng
     - postfix.config
+    - openssh.config
 
   'server_type:salt':
     - match: grain
