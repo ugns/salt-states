@@ -127,7 +127,7 @@ scache    unix  -       -       n       -       1       scache
 #  flags=FR user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
 #  ${nexthop} ${user}
 {% if salt['pillar.get']('postfix:policyd-spf:enabled', False) %}
-policy-spf  unix  -       n       n       -       -       spawn
+policyd-spf  unix  -       n       n       -       -       spawn
   user=nobody argv=/usr/bin/policyd-spf /etc/postfix-policyd-spf-python/policyd-spf.conf
 {%- endif %}
 {% if salt['pillar.get']('postfix:amavis:enabled', False) %}
