@@ -136,7 +136,7 @@ amavis    unix    -       -       n        -      2     lmtp
     -o lmtp_send_xforward_command=yes
     -o disable_dns_lookups=yes
     -o max_use=20
-{{ grains['ip4_interfaces']['eth1'] }}:10025 inet n    -       n       -       -     smtpd
+{{ grains['ip4_interfaces']['eth1'][0] }}:10025 inet n    -       n       -       -     smtpd
     -o content_filter=
     -o smtpd_delay_reject=no
     -o smtpd_client_restrictions=permit_mynetworks,reject
