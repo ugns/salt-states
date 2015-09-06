@@ -136,7 +136,7 @@ amavis    unix    -       -       n        -      2     lmtp
     -o lmtp_send_xforward_command=yes
     -o disable_dns_lookups=yes
     -o max_use=20
-{{ grains['ip4_interfaces']['eth1'][0] }}:10025 inet n    -       n       -       -     smtpd
+{{ master_config.get('amavis_return', '127.0.0.1:10025') }} inet n    -       n       -       -     smtpd
     -o content_filter=
     -o smtpd_delay_reject=no
     -o smtpd_client_restrictions=permit_mynetworks,reject
@@ -146,7 +146,7 @@ amavis    unix    -       -       n        -      2     lmtp
     -o smtpd_data_restrictions=reject_unauth_pipelining
     -o smtpd_end_of_data_restrictions=
     -o smtpd_restriction_classes=
-    -o mynetworks=10.132.50.0/24
+    -o mynetworks={{ master_config.get('amavis_networks', '127.0.0.1/8') }}
     -o smtpd_error_sleep_time=0
     -o smtpd_soft_error_limit=1001
     -o smtpd_hard_error_limit=1000
