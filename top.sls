@@ -1,14 +1,16 @@
 # vim: sts=2:ts=2:et:ai
 base:
   '*':
-    - grains
-    - users
-    - sudoers
-    - github
     - salt.minion
+    - grains
     - ntp.ng
     - postfix.config
+    - fail2ban.config
+    - fail2ban.blacklist
+    - users
+    - sudoers
     - openssh.config
+    - github
 
   'server_type:salt':
     - match: grain
