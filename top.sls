@@ -14,6 +14,7 @@ base:
 
   'server_type:salt':
     - match: grain
+    - duo.login
     - salt.formulas
 
   'server_role:salt_master':
@@ -24,8 +25,29 @@ base:
     - match: grain
     - salt.syndic
 
+  'server_type:mail':
+    - match: grain
+    - duo.login
+
+  'server_type:lb':
+    - match: grain
+    - duo.login
+
+  'server_type:database':
+    - match: grain
+    - duo.login
+
+  'server_type:sks':
+    - match: grain
+    - duo.login
+
+  'server_type:vpn':
+    - match: grain
+    - duo.login
+
   'server_type:web':
     - match: grain
+    - duo.login
     - apache.debian_full
     - apache.modules
     - apache.mod_php5
