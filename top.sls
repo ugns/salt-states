@@ -32,6 +32,7 @@ base:
   'server_type:lb':
     - match: grain
     - duo.login
+    - nginx.ng
 
   'server_type:database':
     - match: grain
