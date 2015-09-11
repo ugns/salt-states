@@ -6,6 +6,7 @@ drop.cidr:
 bogon_networks.cidr:
   cmd.run:
     - name:  wget -q -nd --output-document=- http://www.cymru.com/Documents/bogon-bn-agg.txt |awk '{printf("%s\tREJECT IP address of MX host is in bogon netspace\n",$1)}' > /etc/postfix/bogon_networks.cidr
+    - creates: /etc/postfix/bogon_networks.cidr
 
 sender_access:
   file.managed:
