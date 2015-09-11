@@ -4,3 +4,4 @@
 # /^X-Originating-IP:/         IGNORE
 /^x-cr-[a-z]*:/              IGNORE
 /^Thread-Index:/             IGNORE
+/^Received:.*\[10\.132\.50\.5\]/ IGNORE
