@@ -29,6 +29,10 @@ base:
     - match: grain
     - duo.login
 
+  'G@server_type:mail and G@server_role:relay':
+    - match: compound
+    - postfix.antispam
+
   'server_type:lb':
     - match: grain
     - duo.login
