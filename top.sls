@@ -12,51 +12,52 @@ base:
     - openssh.config
     - github
 
-  'server_type:salt':
-    - match: grain
+# Salt Servers
+  'G@roles:salt:*':
     - duo.login
     - salt.formulas
 
-  'server_role:salt_master':
-    - match: grain
+  'G@roles:salt:master':
     - salt.master
 
-  'server_role:salt_syndic':
-    - match: grain
+  'G@roles:salt:syndic':
     - salt.syndic
 
-  'server_type:mail':
-    - match: grain
+# Mail Servers
+  'G@roles:mail:*':
     - duo.login
 
-  'G@server_type:mail and G@server_role:relay':
-    - match: compound
+  'G@roles:mail:mx':
     - postfix.antispam
 
-  'server_type:lb':
-    - match: grain
+# Nginx Servers
+  'G@roles:nginx:lb':
     - duo.login
     - nginx.ng
 
-  'server_type:database':
-    - match: grain
+# Database Servers
+  'G@roles:database:*':
     - duo.login
 
-  'server_type:sks':
-    - match: grain
+# Key Servers
+  'G@roles:sks:*':
+    - duo.login
+    - sks
+
+  'G@roles:sks:frontend':
+    - nginx.ng
+
+# VPN Servers
+  'G@roles:vpn:*':
     - duo.login
 
-  'server_type:vpn':
-    - match: grain
-    - duo.login
-
-  'server_type:web':
-    - match: grain
+# Apache Servers
+  'G@roles:apache:*':
     - duo.login
     - apache.debian_full
     - apache.modules
     - apache.mod_php5
 
-  'os:Debian':
-    - match: grain
+# Debian Servers
+  'G@os:Debian':
     - repos.apt
