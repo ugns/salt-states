@@ -46,6 +46,7 @@ base:
 
   'G@roles:sks:frontend':
     - nginx.ng
+    - sks.nginx
 
 # VPN Servers
   'G@roles:vpn:*':
