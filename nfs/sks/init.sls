@@ -15,4 +15,4 @@ nfs_sks_keydump_cleanup:
     - name: find -mtime +7 -type f -exec rm {} \;
     - cwd: /srv/sks
     - require_in:
-      = cmd: nfs_sks_keydump
+      - cmd: nfs_sks_keydump
