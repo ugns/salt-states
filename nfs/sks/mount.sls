@@ -4,7 +4,7 @@ include:
 sksnfs:
   host.present:
     - ip:
-{% for server, addrs in salt['mine.get']('nfs:sks', 'internal_ip_addr', expr_form='grain').items() %}
+{% for server, addrs in salt['mine.get']('roles:nfs:sks', 'internal_ip_addrs', expr_form='grain').items() %}
       - {{ addrs[0] }}
 {% endfor %}
     - require_in:
