@@ -12,6 +12,9 @@ base:
     - openssh.config
     - github
 
+  'G@domain:undergrid.net':
+    - route53
+
 # Salt Servers
   'G@roles:salt:*':
     - duo.login
