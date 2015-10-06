@@ -11,7 +11,7 @@ secure_net_a_record:
     - ttl: 300
     - record_type: A
     - profile: ugns_aws_profile
-
+{#
 secure_com_a_record:
   boto_route53.present:
     - name: secure.undergrid.com
@@ -20,4 +20,4 @@ secure_com_a_record:
     - ttl: 300
     - record_type: A
     - profile: ugns_aws_profile
-
+#}
