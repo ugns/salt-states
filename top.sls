@@ -50,6 +50,9 @@ base:
     - nginx.ng
     - sks.nginx
 
+  'G@roles:nfs:sks':
+    - nfs.sks
+
 # VPN Servers
   'G@roles:vpn:*':
     - duo.login
