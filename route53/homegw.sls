@@ -3,6 +3,10 @@ boto_pkg:
   pkg.installed:
     - name: python-boto
 
+curl_pkg:
+  pkg.installed:
+    - name: curl
+
 secure_net_a_record:
   boto_route53.present:
     - name: secure.undergrid.net
