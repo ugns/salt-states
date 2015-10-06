@@ -11,6 +11,7 @@ base:
     - sudoers
     - openssh.config
     - github
+    - basepkgs
 
   'G@domain:undergrid.net':
     - route53
