@@ -7,7 +7,7 @@ nfs_sks_keydump:
   cmd.run:
     - name: wget -q -r -np -nd -A pgp http://ftp.prato.linux.it/pub/keyring/dump-latest/ -e robots=off
     - cwd: {{ sks_mp_dir }}
-    - creates: sks-dump-0000.pgp
+    - creates: {{ sks_mp_dir }}/sks-dump-0000.pgp
     - require:
       - file: nfs_sks_mountpoint
 
