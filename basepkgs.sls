@@ -1,4 +1,4 @@
-{% set pkgs = salt['pillar.get']('base:pkgs', {}) -%}
+{% set pkgs = salt['pillar.get']('base:pkgs', {}).items() -%}
 {% if pkgs -%}
 base_packages:
   pkg.installed:
