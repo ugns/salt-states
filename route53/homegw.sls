@@ -5,7 +5,7 @@ boto_pkg:
 
 test_output:
   cmd.run:
-    - name: echo {{ ipinfo|json }}
+    - name: echo {{ ipinfo|yaml }}
 {#
 secure_net_a_record:
   boto_route53.present:
