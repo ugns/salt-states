@@ -1,11 +1,11 @@
-{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s http://ipinfo.io/') %}
+{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s https://ipinfo.io/ip') %}
 boto_pkg:
   pkg.installed:
     - name: python-boto
 
 test_output:
   cmd.run:
-    - name: echo {{ ipinfo|yaml }}
+    - name: echo {{ ipinfo }}
 {#
 secure_net_a_record:
   boto_route53.present:
