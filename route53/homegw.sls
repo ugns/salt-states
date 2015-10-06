@@ -1,4 +1,4 @@
-{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s https://ipinfo.io/ip') %}
+{% set ipinfo = salt['pillar.get']('my_real_ip', '127.0.0.1') %}
 boto_pkg:
   pkg.installed:
     - name: python-boto
