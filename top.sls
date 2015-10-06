@@ -45,6 +45,7 @@ base:
     - sks
 
   'G@roles:sks:frontend':
+    - cert
     - nginx.ng
     - sks.nginx
 
