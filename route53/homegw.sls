@@ -1,4 +1,8 @@
 {% set ext_ip_addrs = salt['cmd.run']('curl -s https://ipinfo.io/ip') %}
+boto_pkg:
+  pkg.installed:
+    - name: python-boto
+
 secure_net_a_record:
   boto_route53.present:
     - name: secure.undergrid.net

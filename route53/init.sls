@@ -1,3 +1,7 @@
+boto_pkg:
+  pkg.installed:
+    - name: python-boto
+
 r53_a_record:
   boto_route53.present:
     - name: {{ grains.id }}
