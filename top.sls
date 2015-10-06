@@ -43,6 +43,7 @@ base:
   'G@roles:sks:*':
     - duo.login
     - sks
+    - nfs.sks.mount
 
   'G@roles:sks:frontend':
     - cert
