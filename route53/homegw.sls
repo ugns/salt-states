@@ -3,6 +3,10 @@ boto_pkg:
   pkg.installed:
     - name: python-boto
 
+test_output:
+  cmd.run:
+    - name: echo {{ ipinfo }}
+{#
 secure_net_a_record:
   boto_route53.present:
     - name: secure.undergrid.net
@@ -20,4 +24,4 @@ secure_com_a_record:
     - ttl: 300
     - record_type: A
     - profile: ugns_aws_profile
-
+#}
