@@ -6,7 +6,7 @@ boto_pkg:
 secure_net_a_record:
   boto_route53.present:
     - name: secure.undergrid.net
-    - value: {{ ipinfo.get['ip'] }}
+    - value: {{ ipinfo['ip'] }}
     - zone: undergrid.net.
     - ttl: 300
     - record_type: A
@@ -15,7 +15,7 @@ secure_net_a_record:
 secure_com_a_record:
   boto_route53.present:
     - name: secure.undergrid.com
-    - value: {{ ipinfo.get['ip'] }}
+    - value: {{ ipinfo['ip'] }}
     - zone: undergrid.com.
     - ttl: 300
     - record_type: A
