@@ -3,8 +3,8 @@ homegw_check:
     - function: state.sls
     - hours: 4
     - splay:
-      - start: 10
-      - stop: 20
+        - start: 10
+        - stop: 20
     - args:
       - route53.homegw
     - kwargs:
