@@ -1,4 +1,4 @@
-{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s http://ipinfo.io/')|json() %}
+{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s http://ipinfo.io/') %}
 boto_pkg:
   pkg.installed:
     - name: python-boto
