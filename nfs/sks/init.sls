@@ -14,7 +14,5 @@ nfs_sks_keydump_cleanup:
   cmd.run:
     - name: find -mtime +7 -type f -exec rm {} \;
     - cwd: /srv/sks
-    - require:
-      - file: nfs_sks_mountpount
     - require_in:
       = cmd: nfs_sks_keydump
