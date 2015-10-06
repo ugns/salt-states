@@ -1,4 +1,4 @@
-{% set ext_ip_addrs = salt['cmd.run']('/usr/bin/curl -s https://ipinfo.io/ip') %}
+{% set ipinfo = salt['cmd.run']('/usr/bin/curl -s https://ipinfo.io/')|json() %}
 boto_pkg:
   pkg.installed:
     - name: python-boto
@@ -6,7 +6,7 @@ boto_pkg:
 secure_net_a_record:
   boto_route53.present:
     - name: secure.undergrid.net
-    - value: {{ ext_ip_addrs }}
+    - value: {{ ipinfo.get['ip'] }}
     - zone: undergrid.net.
     - ttl: 300
     - record_type: A
@@ -15,7 +15,7 @@ secure_net_a_record:
 secure_com_a_record:
   boto_route53.present:
     - name: secure.undergrid.com
-    - value: {{ ext_ip_addrs }}
+    - value: {{ ipinfo.get['ip'] }}
     - zone: undergrid.com.
     - ttl: 300
     - record_type: A
