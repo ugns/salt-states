@@ -3,7 +3,7 @@
 base_packages:
   pkg.installed:
     - pkgs:
-{% for pkg in pkgs|dictsort -%}
+{% for pkg in pkgs -%}
       - {{ pkg }}
 {% endfor -%}
 {% endif -%}
