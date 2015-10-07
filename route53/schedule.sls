@@ -2,9 +2,9 @@ homegw_check:
   schedule.present:
     - function: state.sls
     - seconds: 3600
-    - job_args:
+    - args:
       - route53.homegw
-    - job_kwargs:
+    - kwargs:
       - test: False
     - enabled: True
     - maxrunning: 1
