@@ -2,9 +2,10 @@ homegw_check:
   schedule.present:
     - function: state.sls
     - hours: 4
-    - args:
+    - job_args:
       - route53.homegw
-    - kwargs:
+    - job_kwargs:
       - test: False
     - enabled: True
     - maxrunning: 1
+    - returner: hipchat
