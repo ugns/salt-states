@@ -1,7 +1,7 @@
 homegw_check:
   schedule.present:
     - function: state.sls
-    - hours: 4
+    - seconds: 3600
     - job_args:
       - route53.homegw
     - job_kwargs:
