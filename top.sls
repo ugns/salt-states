@@ -12,6 +12,7 @@ base:
     - openssh.config
     - github
     - basepkgs
+    - snmp.conf
 
   'G@domain:undergrid.net':
     - route53
