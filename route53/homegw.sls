@@ -16,3 +16,12 @@ secure_com_a_record:
     - ttl: 300
     - record_type: A
     - profile: ugns_aws_profile
+
+secure_org_a_record:
+  boto_route53.present:
+    - name: secure.vistalakehoa.org
+    - value: {{ ipinfo }}
+    - zone: vistalakehoa.org.
+    - ttl: 300
+    - record_type: A
+    - profile: ugns_aws_profile
