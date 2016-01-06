@@ -3,11 +3,11 @@
 saltstack-repo:
   pkgrepo:
     - managed
-    - name: deb http://debian.saltstack.com/debian {{ dist }}-saltstack main
-    - dist: {{ dist }}-saltstack
+    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.ooscodename }} main
+    - dist: {{ grain.oscodename }}
     - comps: main
     - file: /etc/apt/sources.list.d/saltstack.list
-    - key_url: http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key
+    - key_url: https://repo.saltstack.com/apt/{{ grains.os|lower }}/latest/SALTSTACK-GPG-KEY.pub
     - refresh_db: True
 
 google-chrome-repo:
