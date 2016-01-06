@@ -1,3 +1,4 @@
+{% if grains.os_family == 'Debian' %}
 saltstack-repo:
   pkgrepo:
     - managed
@@ -7,7 +8,9 @@ saltstack-repo:
     - file: /etc/apt/sources.list.d/saltstack.list
     - key_url: https://repo.saltstack.com/apt/{{ grains.os|lower }}/latest/SALTSTACK-GPG-KEY.pub
     - refresh_db: True
+{% endif %}
 
+{% if grains.os == 'Debian' %}
 google-chrome-repo:
   pkgrepo:
     - managed
@@ -28,3 +31,4 @@ backports-repo:
     - comps: main,contrib,non-free
     - file: /etc/apt/sources.list.d/backports.list
     - refresh_db: True
+{% endif %}
