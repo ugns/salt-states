@@ -3,8 +3,8 @@
 saltstack-repo:
   pkgrepo:
     - managed
-    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.ooscodename }} main
-    - dist: {{ grain.oscodename }}
+    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.ooscodename|lower }} main
+    - dist: {{ grains.oscodename|lower }}
     - comps: main
     - file: /etc/apt/sources.list.d/saltstack.list
     - key_url: https://repo.saltstack.com/apt/{{ grains.os|lower }}/latest/SALTSTACK-GPG-KEY.pub
