@@ -1,9 +1,7 @@
-{% set dist = grains['oscodename'] %}
-
 saltstack-repo:
   pkgrepo:
     - managed
-    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.ooscodename|lower }} main
+    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.oscodename|lower }} main
     - dist: {{ grains.oscodename|lower }}
     - comps: main
     - file: /etc/apt/sources.list.d/saltstack.list
