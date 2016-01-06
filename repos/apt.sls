@@ -23,8 +23,8 @@ google-chrome-repo:
 backports-repo:
   pkgrepo:
     - managed
-    - name: deb http://ftp.debian.org/debian/ {{ dist }}-backports main
-    - dist: {{ dist }}-backports
+    - name: deb http://ftp.debian.org/debian/ {{ grains.oscodename|lower }}-backports main
+    - dist: {{ grains.oscodename|lower }}-backports
     - comps: main,contrib,non-free
     - file: /etc/apt/sources.list.d/backports.list
     - refresh_db: True
