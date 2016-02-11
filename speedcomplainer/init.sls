@@ -5,6 +5,7 @@ speedcomplainer:
     - rev: master
     - target: {{ install_path }}
     - force_reset: True
+    - force_fetch: True
     - watch_in:
       - service: speedcomplainer
 
