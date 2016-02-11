@@ -1,11 +1,13 @@
 {
+{% if 'twitter' in config %}
     "twitter": {
         "twitterToken": "{{ config.twitter.token }}",
         "twitterConsumerKey": "{{ config.twitter.consumer_key }}",
         "twitterTokenSecret": "{{ config.twitter.token_secret }}",
         "twitterConsumerSecret": "{{ config.twitter.consumer_secret }}"
     },
-    "tweetTo": "{{ config.get('tweet_to') }}",
+{% endif %}
+    "tweetTo": "{{ config.get('tweet_to', '') }}",
     "internetSpeed": "{{ config.get('internetspeed', '50') }}",
     "tweetThresholds": {
         "5": [
