@@ -1,5 +1,5 @@
 {% set install_path = salt['pillar.get']('speedcomplainer:install_path') %}
-speedcomplainer_repo:
+speedcomplainer:
   git.latest:
     - name: https://github.com/UGNS/speedcomplainer.git
     - rev: master
@@ -8,12 +8,16 @@ speedcomplainer_repo:
     - watch_in:
       - service: speedcomplainer
 
-speedcomplainer_venv:
   virtualenv.managed:
     - name: {{ install_path }}
     - requirements: {{ install_path }}/requirements.txt
     - require:
-      - git: speedcomplainer_repo
+      - git: speedcomplainer
+
+  service.running:
+    - enable: True
+    - require:
+      - file: speedcomplainer_config
 
 speedcomplainer_init:
   file.managed:
@@ -24,7 +28,7 @@ speedcomplainer_init:
     - context:
         venv_path: {{ install_path }}
     - require:
-      - virtualenv: speedcomplainer_venv
+      - virtualenv: speedcomplainer
 
 speedcomplainer_config:
   file.managed:
@@ -35,12 +39,6 @@ speedcomplainer_config:
     - context:
         config: {{ salt['pillar.get']('speedcomplainer:config', {}) }}
     - require:
-      - git: speedcomplainer_repo
+      - git: speedcomplainer
     - watch_in:
       - service: speedcomplainer
-
-speedcomplainer:
-  service.running:
-    - enable: True
-    - require:
-      - file: speedcomplainer_config
