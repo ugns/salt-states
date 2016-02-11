@@ -15,6 +15,7 @@ speedcomplainer_init:
   file.managed:
     - name: /etc/init.d/speedcomplainer
     - source: salt://{{ slspath }}/files/init
+    - mode: 755
     - template: jinja
     - context:
         venv_path: {{ install_path }}
