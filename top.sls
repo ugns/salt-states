@@ -72,3 +72,7 @@ base:
 # Debian Servers
   'G@os:Debian':
     - repos.apt
+
+# SpeedComplainer
+  'G@roles:speedcomplainer':
+    - speedcomplainer
