@@ -1,4 +1,5 @@
-{% set install_path = '/usr/local/share/speedcomplainer' %}
+{% set install_path = salt['pillar.get']('speedcomplainer:install_path') %}
+{% set settings = salt['pillar.get']('speedcomplainer:config', {}) %}
 speedcomplainer_repo:
   git.latest:
     - name: https://github.com/UGNS/speedcomplainer.git
@@ -19,3 +20,12 @@ speedcomplainer_init:
     - template: jinja
     - context:
         venv_path: {{ install_path }}
+
+speedcomplainer_config:
+  file.managed:
+    - name: {{ install_path }}/config.json
+    - source: salt://{{ slspath }}/files/config.json
+    - mode: 600
+    - template: jinja
+    - context:
+        config: {{ settings }}
