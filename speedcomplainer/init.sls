@@ -10,6 +10,8 @@ speedcomplainer_venv:
   virtualenv.managed:
     - name: {{ install_path }}
     - requirements: {{ install_path }}/requirements.txt
+    - require:
+      - git: speedcomplainer_repo
 
 speedcomplainer_init:
   file.managed:
@@ -19,6 +21,8 @@ speedcomplainer_init:
     - template: jinja
     - context:
         venv_path: {{ install_path }}
+    - require:
+      - virtualenv: speedcomplainer_venv
 
 speedcomplainer_config:
   file.managed:
@@ -28,3 +32,13 @@ speedcomplainer_config:
     - template: jinja
     - context:
         config: {{ salt['pillar.get']('speedcomplainer:config', {}) }}
+    - require:
+      - git: speedcomplainer_repo
+    - watch_in:
+      - service: speedcomplainer
+
+speedcomplainer:
+  service.running:
+    - enable: True
+    - require:
+      - file: speedcomplainer_config
