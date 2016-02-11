@@ -5,6 +5,8 @@ speedcomplainer_repo:
     - rev: master
     - target: {{ install_path }}
     - force_reset: True
+    - watch_in:
+      - service: speedcomplainer
 
 speedcomplainer_venv:
   virtualenv.managed:
