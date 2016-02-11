@@ -27,4 +27,4 @@ speedcomplainer_config:
     - mode: 600
     - template: jinja
     - context:
-        config: {{ salt['pillar.get']('speedcomplainer:config', {})|json }}
+        config: {{ salt['pillar.get']('speedcomplainer:config', {}) }}
