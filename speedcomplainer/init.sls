@@ -19,6 +19,7 @@ speedcomplainer:
     - enable: True
     - require:
       - file: speedcomplainer_config
+      - file: speedcomplainer_init
 
 speedcomplainer_init:
   file.managed:
