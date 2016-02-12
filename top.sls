@@ -1,6 +1,7 @@
 # vim: sts=2:ts=2:et:ai
 base:
-  '*':
+  'kernel:linux':
+    - match: grain
     - salt.minion
     - grains
     - ntp.ng
