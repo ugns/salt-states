@@ -1,16 +1,4 @@
-{% if grains.os_family == 'Debian' %}
-saltstack-repo:
-  pkgrepo:
-    - managed
-    - name: deb http://repo.saltstack.com/apt/{{ grains.os|lower }}/latest {{ grains.oscodename|lower }} main
-    - dist: {{ grains.oscodename|lower }}
-    - comps: main
-    - file: /etc/apt/sources.list.d/saltstack.list
-    - key_url: https://repo.saltstack.com/apt/{{ grains.os|lower }}/latest/SALTSTACK-GPG-KEY.pub
-    - refresh_db: True
-{% endif %}
-
-{% if grains.os == 'Debian' %}
+{% if grains.os == 'Debian' and 'laptop' in grains.roles %}
 google-chrome-repo:
   pkgrepo:
     - managed
@@ -22,7 +10,9 @@ google-chrome-repo:
     - keyid: 7FAC5991
     - keyserver: pool.sks-keyservers.net
     - refresh_db: True
+{% endif %}
 
+{% if grains.os == 'Debian' %}
 backports-repo:
   pkgrepo:
     - managed

@@ -1,9 +1,14 @@
 # vim: sts=2:ts=2:et:ai
 base:
-  'kernel:linux':
-    - match: grain
+
+# Debian Servers
+  'G@os:Debian':
+    - repos.apt
+    - salt.pkgrepo
+
+# Linux Servers
+  'G@kernel:linux':
     - salt.minion
-    - grains
     - ntp.ng
     - postfix.config
     - fail2ban.config
@@ -15,12 +20,17 @@ base:
     - basepkgs
     - snmp.conf
 
+# Exclude Vagrant environment
+  'G@kernel:linux and not G@environment:vagrant':
+    - grains
+
+# All external servers
   'G@domain:undergrid.net':
     - route53
+    - duo.login
 
 # Salt Servers
   'G@roles:salt:*':
-    - duo.login
     - salt.formulas
 
   'G@roles:salt:master':
@@ -59,20 +69,12 @@ base:
   'G@roles:nfs:sks':
     - nfs.sks
 
-# VPN Servers
-  'G@roles:vpn:*':
-    - duo.login
-
 # Apache Servers
   'G@roles:apache:*':
     - duo.login
     - apache.debian_full
     - apache.modules
     - apache.mod_php5
-
-# Debian Servers
-  'G@os:Debian':
-    - repos.apt
 
 # SpeedComplainer
   'G@roles:speedcomplainer':
