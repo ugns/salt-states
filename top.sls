@@ -58,16 +58,12 @@ base:
 # Key Servers
   'G@roles:sks:*':
     - duo.login
-    - sks
-    - nfs.sks.mount
+    - sks.config
 
   'G@roles:sks:frontend':
     - cert
     - nginx.ng
     - sks.nginx
-
-  'G@roles:nfs:sks':
-    - nfs.sks
 
 # Apache Servers
   'G@roles:apache:*':
