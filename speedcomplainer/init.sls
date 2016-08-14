@@ -20,12 +20,19 @@ speedcomplainer:
     - require:
       - file: speedcomplainer_config
       - file: speedcomplainer_init
+    - order: last
 
 speedcomplainer_init:
   file.managed:
+{% if grains.init == 'systemd' -%}
+    - name: /etc/systemd/system/speedcomplainer.service
+    - source: salt://{{ slspath }}/files/systemd
+    - mode: 644
+{% else -%}
     - name: /etc/init.d/speedcomplainer
     - source: salt://{{ slspath }}/files/init
     - mode: 755
+{% endif -%}
     - template: jinja
     - context:
         venv_path: {{ install_path }}
