@@ -40,24 +40,20 @@ base:
     - salt.syndic
 
 # Mail Servers
-  'G@roles:mail:*':
-    - duo.login
+  # 'G@roles:mail:*':
 
   'G@roles:mail:mx':
     - postfix.antispam
 
 # Nginx Servers
   'G@roles:nginx:lb':
-    - duo.login
     - nginx.ng
 
-# Database Servers
-  'G@roles:database:*':
-    - duo.login
+# # Database Servers
+#   'G@roles:database:*':
 
 # Key Servers
   'G@roles:sks:*':
-    - duo.login
     - sks.config
 
   'G@roles:sks:frontend':
@@ -67,7 +63,6 @@ base:
 
 # Apache Servers
   'G@roles:apache:*':
-    - duo.login
     - apache.debian_full
     - apache.modules
     - apache.mod_php5
