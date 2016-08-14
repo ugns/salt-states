@@ -1,0 +1,36 @@
+{%- macro get_admin(config={}) -%}
+{%- if config -%}
+{% set admin = config.get('admin', '') -%}
+{% set email = config.get('email', '') -%}
+{% set keyid = config.get('keyid', '') -%}
+# {% if admin %}{{ admin }} {% endif %}
+{%- if email %}<{{ email }}> {% endif %}
+{%- if keyid %}{{ keyid }}{% endif %}
+{% endif -%}
+{%- endmacro -%}
+{% macro gen_membership(member, config={}) %}
+{{ member }} {{ config.get('port', '11370') }}
+{{ get_admin(config) }}
+{%- endmacro -%}
+# Managed by config management
+# /etc/sks/membership
+#
+# With SKS, two hosts can efficiently compare their databases then
+# repair whatever differences are found.  In order to set up
+# reconciliation, you first need to find other SKS servers that will
+# agree to gossip with you. The hostname and port of the server that
+# has agreed to do so should be added to this file.
+#
+# Empty lines and whitespace-only lines are ignored, as are lines
+# whose first non-whitespace character is a `#'.
+#
+# Example:
+# keyserver.linux.it 11370
+{%- for server, addrs in salt['mine.get']('roles:sks:*', 'internal_ip_addrs', expr_form='grain').items() -%}
+{%- if server != grains.id -%}
+{{ gen_membership(addrs[0]) }}
+{%- endif -%}
+{%- endfor -%}
+{%- for member, config in salt['pillar.get']('sks:membership', {}).items() -%}
+{{ gen_membership(member, config) }}
+{%- endfor -%}
