@@ -78,4 +78,5 @@ base:
 
 # SpeedComplainer
   'G@roles:speedcomplainer':
+    - github
     - speedcomplainer
