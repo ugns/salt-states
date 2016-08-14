@@ -6,6 +6,10 @@ base:
     - repos.apt
     - salt.pkgrepo
 
+# Exclude Vagrant environment
+  'G@kernel:linux and not G@environment:vagrant':
+    - grains
+
 # Linux Servers
   'G@kernel:linux':
     - salt.minion
@@ -19,10 +23,6 @@ base:
     - github
     - basepkgs
     - snmp.conf
-
-# Exclude Vagrant environment
-  'G@kernel:linux and not G@environment:vagrant':
-    - grains
 
 # All external servers
   'G@domain:undergrid.net':
