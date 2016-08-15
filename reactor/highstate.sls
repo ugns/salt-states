@@ -1,5 +1,5 @@
 highstate_run:
   local.state.apply:
-    - tgt: {{ data['name'] }}
+    - tgt: {{ data.name }}
     - kwarg:
         test: False
