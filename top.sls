@@ -6,6 +6,11 @@ base:
     - repos.apt
     - salt.pkgrepo
 
+# Raspberry Pi Servers
+  'G@cpuarch:armv7l and G@os:Raspbian':
+    - match: compound
+    - raspberrypi
+
 # Exclude Vagrant environment
   'G@kernel:linux and not G@environment:vagrant':
     - grains
