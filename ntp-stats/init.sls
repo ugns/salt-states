@@ -1,7 +1,6 @@
 {% set ntp_stats = salt['pillar.get']('ntp-stats', {} ) -%}
 {% set basepath = ntp_stats.get('basepath', '/srv/ntp-stats/') -%}
 {% set ntp_user = ntp_stats.get('user', 'ntp') -%}
-{% set ntp_group = ntp_stats.get('group', 'ntp') -%}
 
 ntp-stats-graph:
   archive.extracted:
@@ -9,8 +8,6 @@ ntp-stats-graph:
     - source: https://www.davidov.net/download/ntp/ntp-stat-graphs.tar.gz
     - source_hash: https://www.davidov.net/download/ntp/ntp-stat-graphs.tar.gz.md5
     - archive_format: tar
-    - user: {{ ntp_user }}
-    - group: {{ ntp_group }}
     - if_missing: {{ basepath }}/README
 
 ntp-stats-dependencies:
@@ -31,8 +28,6 @@ ntp-{{ script }}-host:
         HOST={{ ntp_stats.get('host') }}
     - count: 1
     - backup: False
-    - user: {{ ntp_user }}
-    - group: {{ ntp_group }}
 {% endif -%}
 
 {% if 'log_dir' in ntp_stats -%}
@@ -45,8 +40,6 @@ ntp-{{ script }}-logs:
         LOG_DIR={{ ntp_stats.get('log_dir') }}
     - count: 1
     - backup: False
-    - user: {{ ntp_user }}
-    - group: {{ ntp_group }}
 {% endif -%}
 
 
@@ -60,7 +53,5 @@ ntp-{{ script }}-www:
         WWW_LOCATION="{{ ntp_stats.get('www_location') }}"
     - count: 1
     - backup: False
-    - user: {{ ntp_user }}
-    - group: {{ ntp_group }}
 {% endif -%}
 {% endfor -%}
