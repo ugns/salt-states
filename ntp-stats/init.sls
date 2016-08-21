@@ -47,7 +47,7 @@ ntp-{{ script }}-www:
   file.replace:
     - name: {{ basepath }}ntp-{{ script }}.sh
     - pattern: |
-        ^LOCATION=.*$
+        ^WWW_LOCATION=.*$
     - repl: |
         WWW_LOCATION="{{ ntp_stats.get('www_location') }}"\n
     - count: 1
