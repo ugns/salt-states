@@ -8,6 +8,7 @@ ntp-stats-graph:
     - source: https://www.davidov.net/download/ntp/ntp-stat-graphs.tar.gz
     - source_hash: https://www.davidov.net/download/ntp/ntp-stat-graphs.tar.gz.md5
     - archive_format: tar
+    - user: {{ ntp_user }}
     - if_missing: {{ basepath }}/README
 
 ntp-stats-dependencies:
