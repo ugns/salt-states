@@ -24,7 +24,7 @@ ntp-{{ script }}-host:
   file.replace:
     - name: {{ basepath }}ntp-{{ script }}.sh
     - pattern: |
-        ^HOST=.*
+        ^HOST=.*$
     - repl: HOST={{ ntp_stats.get('host') }}
 {% endif -%}
 
@@ -33,7 +33,7 @@ ntp-{{ script }}-logs:
   file.replace:
     - name: {{ basepath }}ntp-{{ script }}.sh
     - pattern: |
-        ^LOG_DIR=.*
+        ^LOG_DIR=.*$
     - repl: LOG_DIR={{ ntp_stats.get('log_dir') }}
 {% endif -%}
 
@@ -43,7 +43,7 @@ ntp-{{ script }}-www:
   file.replace:
     - name: {{ basepath }}ntp-{{ script }}.sh
     - pattern: |
-        ^LOCATION=.*
+        ^LOCATION=.*$
     - repl: WWW_LOCATION="{{ ntp_stats.get('www_location') }}"
 {% endif -%}
 {% endfor -%}
