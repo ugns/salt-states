@@ -26,7 +26,7 @@ ntp-{{ script }}-host:
     - pattern: |
         ^HOST=.*$
     - repl: |
-        HOST={{ ntp_stats.get('host') }}
+        HOST={{ ntp_stats.get('host') }}\n
     - count: 1
 {% endif -%}
 
@@ -37,7 +37,7 @@ ntp-{{ script }}-logs:
     - pattern: |
         ^LOG_DIR=.*$
     - repl: |
-        LOG_DIR={{ ntp_stats.get('log_dir') }}
+        LOG_DIR={{ ntp_stats.get('log_dir') }}\n
     - count: 1
 {% endif -%}
 
@@ -49,7 +49,7 @@ ntp-{{ script }}-www:
     - pattern: |
         ^LOCATION=.*$
     - repl: |
-        WWW_LOCATION="{{ ntp_stats.get('www_location') }}"
+        WWW_LOCATION="{{ ntp_stats.get('www_location') }}"\n
     - count: 1
 {% endif -%}
 {% endfor -%}
