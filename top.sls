@@ -28,6 +28,7 @@ base:
     - github
     - basepkgs
     - snmp.conf
+    - base.issue
 
 # All external servers
   'G@domain:undergrid.net':
