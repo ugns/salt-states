@@ -11,5 +11,6 @@ notify_slack:
       - 'automation'
       - "Highstate ran on {{ data.name }}"
       - 'SaltStack'
+      - {{ salt['pillar.get']('salt:returners:slack:api_key') }}
     - kwargs:
       - test: False
