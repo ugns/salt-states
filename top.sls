@@ -38,6 +38,8 @@ base:
 # Salt Servers
   'G@roles:salt:*':
     - salt.formulas
+    - salt.gitfs.keys
+    - salt.gitfs.gitpython
 
   'G@roles:salt:master':
     - salt.master
