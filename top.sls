@@ -4,7 +4,6 @@ base:
 # Debian Servers
   'G@os:Debian':
     - repos.apt
-    - salt.pkgrepo
 
 # Raspberry Pi Servers
   'G@cpuarch:armv7l and G@os:Raspbian':
