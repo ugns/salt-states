@@ -41,6 +41,7 @@ base:
 
   'G@roles:salt:master':
     - salt.master
+    - salt.cloud
 
   'G@roles:salt:syndic':
     - salt.syndic
