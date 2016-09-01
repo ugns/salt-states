@@ -40,6 +40,7 @@ base:
     - salt.gitfs.keys
 
   'G@roles:salt:master':
+    - cert
     - salt.master
     - salt.cloud
 
