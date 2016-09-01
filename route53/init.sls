@@ -3,7 +3,7 @@ boto_pkg:
     - name: python-boto
 
   pip.installed:
-    - name: python-boto
+    - name: boto
     - require:
       - pkg: boto_pkg
 
