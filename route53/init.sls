@@ -1,11 +1,11 @@
 boto_pkg:
-  pkg.installed:
+  pip.installed:
     - name: python-boto
 
 r53_a_record:
   boto_route53.present:
     - name: {{ grains.id }}
-    - value: {{ grains.ip_interfaces['eth0'][0] }}
+    - value: {{ grains.ip4_interfaces['eth0'][0] }}
     - zone: {{ grains.domain }}.
     - ttl: 300
     - record_type: A
