@@ -4,6 +4,7 @@ boto_pkg:
 
   pip.installed:
     - name: boto
+    - reload_modules: True
     - require:
       - pkg: boto_pkg
 
