@@ -1,6 +1,11 @@
 boto_pkg:
+  pkg.purged:
+    - name: python-boto
+
   pip.installed:
     - name: python-boto
+    - require:
+      - pkg: boto_pkg
 
 r53_a_record:
   boto_route53.present:
