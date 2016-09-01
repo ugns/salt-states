@@ -25,9 +25,9 @@ base:
     - sudoers
     - openssh.config
     - github
-    - basepkgs
-    - snmp.conf
+    - base.pkgs
     - base.issue
+    - snmp.conf
 
 # All external servers
   'G@domain:undergrid.net':
