@@ -36,6 +36,7 @@ base:
 
 # Salt Servers
   'G@roles:salt:*':
+    - haveged
     - salt.formulas
     - salt.gitfs.keys
 
@@ -48,13 +49,20 @@ base:
     - salt.syndic
 
 # Mail Servers
-  # 'G@roles:mail:*':
+  'G@roles:mail:*':
+    - haveged
+
+  'G@roles:mail:mailbox':
+    - cert
 
   'G@roles:mail:mx':
+    - cert
     - postfix.antispam
 
 # Nginx Servers
   'G@roles:nginx:lb':
+    - cert
+    - haveged
     - nginx.ng
 
 # # Database Servers
@@ -66,6 +74,7 @@ base:
 
   'G@roles:sks:frontend':
     - cert
+    - haveged
     - nginx.ng
     - sks.nginx
 
