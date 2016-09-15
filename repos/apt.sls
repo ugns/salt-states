@@ -10,6 +10,7 @@ google-chrome-repo:
     - keyserver: pool.sks-keyservers.net
     - refresh_db: True
     - clean_file: True
+    - order: 1
 {% endif %}
 
 {% if grains.os == 'Debian' %}
@@ -21,4 +22,5 @@ backports-repo:
     - file: /etc/apt/sources.list.d/backports.list
     - refresh_db: True
     - clean_file: True
+    - order: 1
 {% endif %}
