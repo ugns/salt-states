@@ -4,5 +4,7 @@ amavisd:
 
   service.running:
     - name: amavis
+    - enable: True
+    - sig: amavisd-new
     - require:
       - pkg: amavisd
